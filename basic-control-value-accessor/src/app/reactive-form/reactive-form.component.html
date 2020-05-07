@@ -1,0 +1,21 @@
+<h1 style="text-align: center">CVA with Reactive Form</h1>
+<form [formGroup]="_formGroup">
+  <app-custom-input
+    formControlName="name"
+    label="User Name"
+    placeholder="Please enter your user name"
+    [required]="true">
+  </app-custom-input>
+  <p>
+    <button type="submit" [disabled]="_formGroup.invalid">Submit</button>
+  </p>
+</form>
+
+<h2>value: {{_formGroup.controls["name"].value}}</h2>
+<h2>touched: {{_formGroup.controls["name"].touched}}</h2>
+<h2>dirty: {{_formGroup.controls["name"].dirty}}</h2>
+<h2>status: {{_formGroup.controls["name"].status}}</h2>
+
+<button (click)="_setNewValue()">Set new value</button>
+<button (click)="_setDisabled()">Set disabled</button>
+<button (click)="_setEnabled()">Set enabled</button>

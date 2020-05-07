@@ -1,0 +1,21 @@
+<h1 style="text-align: center">CVA with Template Driven Form</h1>
+<app-custom-input
+  [(ngModel)]="model"
+  #customInput="ngModel"
+  label="User Name"
+  placeholder="Please enter your user name"
+  [disabled]="_disabled"
+  [required]="true">
+</app-custom-input>
+<p>
+  <button type="submit" [disabled]="customInput.invalid">Submit</button>
+</p>
+
+<h2>value: {{customInput.value}}</h2>
+<h2>touched: {{customInput.touched}}</h2>
+<h2>dirty: {{customInput.dirty}}</h2>
+<h2>status: {{customInput.status}}</h2>
+
+<button (click)="_setNewValue()">Set new value</button>
+<button (click)="_setDisabled()">Set disabled</button>
+<button (click)="_setEnabled()">Set enabled</button>
