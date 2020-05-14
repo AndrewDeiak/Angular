@@ -1,0 +1,28 @@
+<form [formGroup]="_formGroup">
+  <input type="text" placeholder="Name" formControlName="name">
+  <input type="email" placeholder="Email" formControlName="email">
+  <button (click)="_addAlternativeEmail()">Add alternative email address</button>
+  <button (click)="_addFriend()">Add friend</button>
+
+  <div *ngFor="let email of alternativeEmails.controls; let i = index"
+       formArrayName="alternativeEmails">
+    <input type="email" placeholder="Alternative Email" [formControlName]="i">
+  </div>
+
+  <div *ngFor="let friend of friends.controls">
+    <div [formGroup]="friend">
+      <input type="text" placeholder="Friend Name" formControlName="friendName">
+      <input type="email" placeholder="Friend Email" formControlName="friendEmail">
+    </div>
+  </div>
+</form>
+
+<br>
+Form value: {{_formGroup.value | json}}
+<br>
+
+<br>
+Form valid: {{_formGroup.valid | json}}
+<br>
+
+<button (click)="_formToConsole()">Console log Form</button>
