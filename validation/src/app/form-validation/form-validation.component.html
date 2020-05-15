@@ -1,0 +1,16 @@
+<h2>Validators and Async Validators</h2>
+<form [formGroup]="_formGroup" *ngIf="_formGroup">
+  <input type="text" placeholder="name" formControlName="name">
+  <br>
+  <input type="text" placeholder="Super Hero" formControlName="superHero">
+  <br>
+  <input type="text" placeholder="Simple Hero" formControlName="simpleHero">
+  <div *ngIf="_formGroup.controls.simpleHero.pending">Pending...</div>
+  <br>
+
+  <div *ngIf="_formGroup.controls.simpleHero.errors as errors"> Simple Hero Errors: {{errors | json}}</div>
+  <div *ngIf="_formGroup.errors as errors">Form Errors: {{errors | json}}</div>
+</form>
+<br>
+<br>
+<button (click)="_consoleForm()">Console Form</button>
