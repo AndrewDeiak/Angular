@@ -31,13 +31,13 @@ export class DynamicFormComponent implements OnInit {
   }
 
   public _addAlternativeEmail(): void {
-    this.alternativeEmails.push(this.fb.control(null, [Validators.required]));
+    this.alternativeEmails.push(this.fb.control(null, [Validators.required, Validators.email]));
   }
 
   public _addFriend(): void {
     this.friends.push(this.fb.group({
       friendName: [null, [Validators.required]],
-      friendEmail: [null, [Validators.required]]
+      friendEmail: [null, [Validators.required, Validators.email]]
     }));
   }
 

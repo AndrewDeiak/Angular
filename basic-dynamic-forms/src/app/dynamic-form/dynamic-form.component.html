@@ -1,6 +1,9 @@
 <form [formGroup]="_formGroup">
   <input type="text" placeholder="Name" formControlName="name">
+  <br>
   <input type="email" placeholder="Email" formControlName="email">
+  <br>
+  <br>
   <button (click)="_addAlternativeEmail()">Add alternative email address</button>
   <button (click)="_addFriend()">Add friend</button>
 
@@ -24,5 +27,5 @@ Form value: {{_formGroup.value | json}}
 <br>
 Form valid: {{_formGroup.valid | json}}
 <br>
-
+<br>
 <button (click)="_formToConsole()">Console log Form</button>

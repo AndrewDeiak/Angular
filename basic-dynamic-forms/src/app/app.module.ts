@@ -4,11 +4,13 @@ import {BrowserModule} from "@angular/platform-browser";
 
 import {AppComponent} from "./app.component";
 import {DynamicFormComponent} from "./dynamic-form/dynamic-form.component";
+import {NgSwitchApproarchComponent} from "./ng-switch-approarch/ng-switch-approarch.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    DynamicFormComponent
+    DynamicFormComponent,
+    NgSwitchApproarchComponent
   ],
   imports: [
     BrowserModule,

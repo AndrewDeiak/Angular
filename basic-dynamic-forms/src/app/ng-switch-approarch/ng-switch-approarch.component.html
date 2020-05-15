@@ -1,0 +1,42 @@
+<form [formGroup]="_formGroup">
+  <ng-container [ngSwitch]="input.controlType" *ngFor="let input of _formData">
+    <ng-template [ngSwitchCase]="'text'">
+      <label [for]="input.id">{{input.controlName}}</label>
+      <input [id]="input.id"
+             [formControlName]="input.controlName"
+             [type]="input.controlType"
+             [placeholder]="input.placeholder"
+             [required]="input.validators.required">
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'select'">
+      <label [for]="input.id">{{input.controlName}}</label>
+      <select [id]="input.id"
+              [formControlName]="input.controlName"
+              [required]="input.validators.required">
+        <option value="">{{input.placeholder}}</option>
+        <option *ngFor="let option of input.options"
+                [value]="option.value">
+          {{option.optionName}}
+        </option>
+      </select>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'radio'">
+      <ng-container *ngFor="let option of input.options">
+        <input [id]="option.id"
+               [formControlName]="input.controlName"
+               [type]="input.controlType"
+               [name]="input.controlName"
+               [value]="option.value"
+               [required]="input.validators.required">
+        <label [for]="input.id">{{option.optionName}}</label>
+      </ng-container>
+    </ng-template>
+  </ng-container>
+</form>
+
+<br>
+Form value: {{_formGroup.value | json}}
+
+<button (click)="_consoleForm()">Form Console</button>
