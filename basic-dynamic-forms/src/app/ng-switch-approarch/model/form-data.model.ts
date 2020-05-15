@@ -1,5 +1,5 @@
 export interface FormDataModel {
-  id: string;
+  id: FormValueId;
   controlName: string;
   controlType: string;
   currentValue?: string;
@@ -9,9 +9,12 @@ export interface FormDataModel {
     optionName: string;
     value: string;
   }>;
-  validators?: {
-    required?: boolean;
-    minlength?: number;
-    maxlength?: number;
-  };
+}
+
+export enum FormValueId {
+  Name = "name",
+  Phone = "phone",
+  Email = "email",
+  Gender = "gender",
+  Vehicle = "vehicle",
 }

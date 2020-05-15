@@ -10,7 +10,7 @@ import {NgSwitchApproarchComponent} from "./ng-switch-approarch/ng-switch-approa
   declarations: [
     AppComponent,
     DynamicFormComponent,
-    NgSwitchApproarchComponent
+    NgSwitchApproarchComponent,
   ],
   imports: [
     BrowserModule,

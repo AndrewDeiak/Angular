@@ -1,10 +1,11 @@
-import {Component, OnInit} from "@angular/core";
+import {ChangeDetectionStrategy, Component, OnInit} from "@angular/core";
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: "app-dynamic-form",
   templateUrl: "./dynamic-form.component.html",
-  styleUrls: ["./dynamic-form.component.less"]
+  styleUrls: ["./dynamic-form.component.less"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicFormComponent implements OnInit {
 

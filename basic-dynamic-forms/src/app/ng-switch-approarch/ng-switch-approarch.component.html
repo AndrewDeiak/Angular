@@ -1,19 +1,20 @@
-<form [formGroup]="_formGroup">
+<h4>Errors always visible to demonstrate that validation works</h4>
+
+<form [formGroup]="_formGroup" *ngIf="_formGroup">
   <ng-container [ngSwitch]="input.controlType" *ngFor="let input of _formData">
     <ng-template [ngSwitchCase]="'text'">
       <label [for]="input.id">{{input.controlName}}</label>
       <input [id]="input.id"
              [formControlName]="input.controlName"
              [type]="input.controlType"
-             [placeholder]="input.placeholder"
-             [required]="input.validators.required">
+             [placeholder]="input.placeholder">
     </ng-template>
+    <br>
 
     <ng-template [ngSwitchCase]="'select'">
       <label [for]="input.id">{{input.controlName}}</label>
       <select [id]="input.id"
-              [formControlName]="input.controlName"
-              [required]="input.validators.required">
+              [formControlName]="input.controlName">
         <option value="">{{input.placeholder}}</option>
         <option *ngFor="let option of input.options"
                 [value]="option.value">
@@ -21,6 +22,7 @@
         </option>
       </select>
     </ng-template>
+    <br>
 
     <ng-template [ngSwitchCase]="'radio'">
       <ng-container *ngFor="let option of input.options">
@@ -28,15 +30,19 @@
                [formControlName]="input.controlName"
                [type]="input.controlType"
                [name]="input.controlName"
-               [value]="option.value"
-               [required]="input.validators.required">
+               [value]="option.value">
         <label [for]="input.id">{{option.optionName}}</label>
       </ng-container>
     </ng-template>
+
+    <div style="color: red" *ngIf="_formGroup.controls[input.controlName].errors as errors">{{errors | json}}</div>
   </ng-container>
 </form>
 
 <br>
 Form value: {{_formGroup.value | json}}
-
+<br>
+Form valid: {{_formGroup.valid | json}}
+<br>
+<br>
 <button (click)="_consoleForm()">Form Console</button>
