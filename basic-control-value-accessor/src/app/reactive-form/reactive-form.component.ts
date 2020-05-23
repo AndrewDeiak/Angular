@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ChangeDetectionStrategy, Component, OnInit} from "@angular/core";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
-  selector: 'app-reactive-form',
-  templateUrl: './reactive-form.component.html',
-  styleUrls: ['./reactive-form.component.less']
+  selector: "app-reactive-form",
+  templateUrl: "./reactive-form.component.html",
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ReactiveFormComponent implements OnInit {
   public _formGroup: FormGroup;
@@ -14,19 +14,8 @@ export class ReactiveFormComponent implements OnInit {
 
   public ngOnInit(): void {
     this._formGroup = this.fb.group({
-      name: ['Car', Validators.required]
+      name: ["Andrew", Validators.required],
+      surname: ["Deiak", Validators.required],
     });
-  }
-
-  public _setNewValue() {
-    this._formGroup.controls['name'].setValue('new value');
-  }
-
-  public _setDisabled() {
-    this._formGroup.controls['name'].disable();
-  }
-
-  public _setEnabled() {
-    this._formGroup.controls['name'].enable();
   }
 }

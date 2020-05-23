@@ -1,21 +1,37 @@
-<h1 style="text-align: center">CVA with Reactive Form</h1>
-<form [formGroup]="_formGroup">
-  <app-custom-input
-    formControlName="name"
-    label="User Name"
-    placeholder="Please enter your user name"
-    [required]="true">
-  </app-custom-input>
-  <p>
-    <button type="submit" [disabled]="_formGroup.invalid">Submit</button>
-  </p>
-</form>
+<h3 class="text-center mt-4 mb-4">CVA with Reactive Form</h3>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Implementation with provider</h5>
+        <form [formGroup]="_formGroup" class="mb-2">
+          <app-custom-input-with-provider
+            [required]="true"
+            formControlName="name"
+            label="User Name"
+            placeholder="Please enter your user name"></app-custom-input-with-provider>
+        </form>
+        <app-form-control-actions [control]="_formGroup.controls['name']"></app-form-control-actions>
+      </div>
+    </div>
+  </div>
 
-<h2>value: {{_formGroup.controls["name"].value}}</h2>
-<h2>touched: {{_formGroup.controls["name"].touched}}</h2>
-<h2>dirty: {{_formGroup.controls["name"].dirty}}</h2>
-<h2>status: {{_formGroup.controls["name"].status}}</h2>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Implementation with NgControl</h5>
+        <form [formGroup]="_formGroup">
+          <app-custom-input-with-ng-control
+            formControlName="surname"
+            label="User Surname"
+            placeholder="Please enter your surname"
+            [required]="true"></app-custom-input-with-ng-control>
+        </form>
 
-<button (click)="_setNewValue()">Set new value</button>
-<button (click)="_setDisabled()">Set disabled</button>
-<button (click)="_setEnabled()">Set enabled</button>
+        <app-form-control-actions [control]="_formGroup.controls['surname']"></app-form-control-actions>
+      </div>
+    </div>
+  </div>
+</div>
+
+

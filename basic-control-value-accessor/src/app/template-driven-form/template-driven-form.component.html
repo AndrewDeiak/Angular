@@ -1,21 +1,38 @@
-<h1 style="text-align: center">CVA with Template Driven Form</h1>
-<app-custom-input
-  [(ngModel)]="model"
-  #customInput="ngModel"
-  label="User Name"
-  placeholder="Please enter your user name"
-  [disabled]="_disabled"
-  [required]="true">
-</app-custom-input>
-<p>
-  <button type="submit" [disabled]="customInput.invalid">Submit</button>
-</p>
+<h3 class="text-center mt-4 mb-4">CVA with Template Driven Form</h3>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Implementation with provider</h5>
+        <form #formName="ngForm">
+          <app-custom-input-with-provider #customInputName="ngModel"
+                                          [(ngModel)]="_nameModel"
+                                          [required]="true"
+                                          name="name"
+                                          label="User Name"
+                                          placeholder="Please enter your user name"></app-custom-input-with-provider>
+        </form>
 
-<h2>value: {{customInput.value}}</h2>
-<h2>touched: {{customInput.touched}}</h2>
-<h2>dirty: {{customInput.dirty}}</h2>
-<h2>status: {{customInput.status}}</h2>
+        <app-form-control-actions [control]="formName.controls['name']"></app-form-control-actions>
+      </div>
+    </div>
+  </div>
 
-<button (click)="_setNewValue()">Set new value</button>
-<button (click)="_setDisabled()">Set disabled</button>
-<button (click)="_setEnabled()">Set enabled</button>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Implementation with NgControl</h5>
+        <form #formSurname="ngForm">
+          <app-custom-input-with-ng-control [(ngModel)]="_surnameModel"
+                                            #customInputSurname="ngModel"
+                                            [required]="true"
+                                            name="surname"
+                                            label="User Surname"
+                                            placeholder="Please enter your user name"></app-custom-input-with-ng-control>
+        </form>
+
+        <app-form-control-actions [control]="formSurname.controls['surname']"></app-form-control-actions>
+      </div>
+    </div>
+  </div>
+</div>

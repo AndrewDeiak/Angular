@@ -1,17 +1,17 @@
-import {Component, forwardRef, Input} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Input} from "@angular/core";
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
-  selector: 'app-custom-input',
-  templateUrl: './custom-input.component.html',
-  styleUrls: ['./custom-input.component.less'],
+  selector: "app-custom-input-with-provider",
+  templateUrl: "./custom-input-with-provider.component.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => CustomInputComponent),
+    useExisting: forwardRef(() => CustomInputWithProviderComponent),
     multi: true
   }]
 })
-export class CustomInputComponent implements ControlValueAccessor {
+export class CustomInputWithProviderComponent implements ControlValueAccessor {
 
   @Input()
   public label: string;
@@ -31,14 +31,18 @@ export class CustomInputComponent implements ControlValueAccessor {
   private _onChange: (value: any) => void;
   private _onTouched: () => void;
 
+  constructor(private cdr: ChangeDetectorRef) {
+  }
+
   public onChange() {
     this._onChange && this._onChange(this.value);
   }
 
   // gets the value from the formControl
-  public writeValue(obj: string): void {
-    this.value = obj;
-    this._onChange && this._onChange(obj);
+  public writeValue(value: string): void {
+    this.value = value;
+    this._onChange && this._onChange(value);
+    this.cdr.detectChanges();
   }
 
   public onTouched() {
@@ -55,5 +59,6 @@ export class CustomInputComponent implements ControlValueAccessor {
 
   public setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+    this.cdr.detectChanges();
   }
 }

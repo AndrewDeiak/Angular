@@ -1,0 +1,13 @@
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text">{{label}}</label>
+  </div>
+  <input type="text"
+         class="form-control"
+         [required]="required"
+         [disabled]="disabled"
+         [placeholder]="placeholder"
+         [(ngModel)]="value"
+         (input)="onChange()"
+         (blur)="onTouched()">
+</div>
