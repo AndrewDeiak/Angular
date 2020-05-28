@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component, OnInit} from "@angular/core";
+import {ChangeDetectionStrategy, Component, Injector, OnInit} from "@angular/core";
+import {MICROSERVICE_URL} from "./app.module";
 import {HouseService} from "./services/deps/house.service";
 import {DogService} from "./services/useClass/dog.service";
 import {WebsiteService} from "./services/useExisting/website.service";
@@ -15,7 +16,8 @@ export class AppComponent implements OnInit {
               private cityService: CityService,
               private houseService: HouseService,
               private phoneService: PhoneService,
-              private websiteService: WebsiteService) {
+              private websiteService: WebsiteService,
+              private injector: Injector) {
   }
 
   public ngOnInit(): void {
@@ -24,5 +26,8 @@ export class AppComponent implements OnInit {
     this.houseService.saySomething();
     this.phoneService.saySomething();
     this.websiteService.saySomething();
+    console.log("API_URL", this.injector.get(MICROSERVICE_URL));
+    // here we have ["path_to_mircoservice1", "path_to_mircoservice1"],
+    // we can get necessary injector and implement logic
   }
 }
