@@ -1,5 +1,5 @@
-import {ChangeDetectionStrategy, Component, Injector, OnInit} from "@angular/core";
-import {MICROSERVICE_URL} from "./app.module";
+import {ChangeDetectionStrategy, Component, Inject, Injector, OnInit} from "@angular/core";
+import {MICROSERVICE_URL} from "./microservice-token";
 import {HouseService} from "./services/deps/house.service";
 import {DogService} from "./services/useClass/dog.service";
 import {WebsiteService} from "./services/useExisting/website.service";
@@ -17,7 +17,8 @@ export class AppComponent implements OnInit {
               private houseService: HouseService,
               private phoneService: PhoneService,
               private websiteService: WebsiteService,
-              private injector: Injector) {
+              private injector: Injector,
+              @Inject(MICROSERVICE_URL) private microservices: string[]) {
   }
 
   public ngOnInit(): void {
@@ -26,8 +27,12 @@ export class AppComponent implements OnInit {
     this.houseService.saySomething();
     this.phoneService.saySomething();
     this.websiteService.saySomething();
-    console.log("API_URL", this.injector.get(MICROSERVICE_URL));
+    console.log("this.injector.get(MICROSERVICE_URL)", this.injector.get(MICROSERVICE_URL));
+    console.log("this.microservices", this.microservices);
     // here we have ["path_to_mircoservice1", "path_to_mircoservice1"],
-    // we can get necessary injector and implement logic
+    // we can get necessary microservice match with @Input() service: string for example
   }
 }
+
+// TODO: Resolution modifiers
+// @Optional() @Self() @SkipSelf() @Host()

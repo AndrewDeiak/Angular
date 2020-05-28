@@ -1,9 +1,8 @@
 import {HttpClientModule} from "@angular/common/http";
-import {InjectionToken, NgModule} from "@angular/core";
+import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {AppComponent} from "./app.component";
-
-export const MICROSERVICE_URL = new InjectionToken<string>("MICROSERVICE");  // 'API_URL' - имя ключа
+import {MICROSERVICE_URL} from "./microservice-token";
 
 @NgModule({
   declarations: [
