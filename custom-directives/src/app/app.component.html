@@ -3,11 +3,17 @@
   instance</h3>
 <p>everySecond: {{_everySecond}}</p>
 <p>everyTwoSecond: {{_everyTwoSecond}}</p>
+<hr>
 <h3 [appHidden]="false">Input the same name as directive</h3>
 <h3 appUnderline>HostListeners</h3>
-<ng-template [appMyIf]="true" let-implicitData let-obviousData="obviousData">
-  <h3>Structural directive myIf</h3>
+<hr>
+<div *appMyIf="true; let implicitData; let obviousData='obviousData'">
+  <h3>Structural directive myIf (SUGARED)</h3>
   <h4>implicit data: {{implicitData.name}}</h4>
-    <h4> obvious data: {{obviousData.surname}}</h4>
+  <h4> obvious data: {{obviousData.surname}}</h4></div>
+<ng-template [appMyIf]="true" let-implicitData let-obviousData="obviousData">
+  <h3>Structural directive myIf (SUGARFREE)</h3>
+  <h4>implicit data: {{implicitData.name}}</h4>
+  <h4> obvious data: {{obviousData.surname}}</h4>
 </ng-template>
-
+<hr>
