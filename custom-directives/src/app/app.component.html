@@ -1,7 +1,13 @@
-<h3 (appEverySecond)="_everySecond = $event" (appEveryTwoSecond)="_everyTwoSecond = $event">Multiple selectors on the
-  same element creates single directive instance</h3>
+<h3 (appEverySecond)="_everySecond = $event"
+    (appEveryTwoSecond)="_everyTwoSecond = $event">Multiple selectors on the same element creates single directive
+  instance</h3>
 <p>everySecond: {{_everySecond}}</p>
 <p>everyTwoSecond: {{_everyTwoSecond}}</p>
 <h3 [appHidden]="false">Input the same name as directive</h3>
 <h3 appUnderline>HostListeners</h3>
-<ng-template [appMyIf]="true"><h3>Structural directive myIf</h3></ng-template>
+<ng-template [appMyIf]="true" let-implicitData let-obviousData="obviousData">
+  <h3>Structural directive myIf</h3>
+  <h4>implicit data: {{implicitData.name}}</h4>
+    <h4> obvious data: {{obviousData.surname}}</h4>
+</ng-template>
+

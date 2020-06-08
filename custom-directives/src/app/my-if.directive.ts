@@ -10,8 +10,15 @@ export class MyIfDirective {
   }
 
   @Input() set appMyIf(value: boolean) {
-    value ? this.viewContainerRef.createEmbeddedView(this.templateRef) : this.viewContainerRef.clear();
+    value ? this.viewContainerRef.createEmbeddedView(this.templateRef, {
+      $implicit: {name: "Andrew"},
+      obviousData: {surname: "Deiak"}
+    }) : this.viewContainerRef.clear();
   }
+
+  /**
+   * Using the key $implicit in the context object will set its value as default.
+   */
 
   /**
    * The most important difference with the way we created attribute directive is how they are provided to the DOM.
