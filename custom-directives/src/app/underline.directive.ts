@@ -14,7 +14,6 @@ export class UnderlineDirective {
   @HostListener("mouseleave") onMouseleave = () => this.hover(false);
 
   private hover(isUnderlined: boolean): void {
-    console.log(isUnderlined);
     const targetElement = this.elementRef.nativeElement;
     isUnderlined ? this.renderer.setStyle(targetElement, "text-decoration", "underline")
       : this.renderer.setStyle(targetElement, "text-decoration", "none");
