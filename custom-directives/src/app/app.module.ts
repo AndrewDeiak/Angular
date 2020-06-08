@@ -1,14 +1,16 @@
 import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {AppComponent} from "./app.component";
+import {HiddenDirective} from "./hidden.directive";
 import {PingDirective} from "./ping.directive";
-import { HiddenDirective } from './hidden.directive';
+import {UnderlineDirective} from "./underline.directive";
 
 @NgModule({
   declarations: [
     AppComponent,
     PingDirective,
-    HiddenDirective
+    HiddenDirective,
+    UnderlineDirective
   ],
   imports: [
     BrowserModule,
