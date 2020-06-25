@@ -4,6 +4,8 @@ import {AppComponent} from "./app.component";
 import {HiddenDirective} from "./hidden.directive";
 import {MyIfDirective} from "./my-if.directive";
 import {PingDirective} from "./ping.directive";
+import {TooltipContainerComponent} from "./tooltip-container/tooltip-container.component";
+import {TooltipDirective} from "./tooltip-container/tooltip.directive";
 import {UnderlineDirective} from "./underline.directive";
 
 @NgModule({
@@ -12,12 +14,15 @@ import {UnderlineDirective} from "./underline.directive";
     PingDirective,
     HiddenDirective,
     UnderlineDirective,
-    MyIfDirective
+    MyIfDirective,
+    TooltipDirective,
+    TooltipContainerComponent
   ],
   imports: [
     BrowserModule,
   ],
   providers: [],
+  entryComponents: [TooltipContainerComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

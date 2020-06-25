@@ -17,3 +17,9 @@
   <h4> obvious data: {{obviousData.surname}}</h4>
 </ng-template>
 <hr>
+<h3 *appTooltip="_tooltipText; hovered: _onHoveredTooltip">Tooltip</h3>
+<br>
+Choose the tooltip`s text
+<button (click)="_tooltipText = 'one'">One</button>
+<button (click)="_tooltipText = 'two'">Two</button>
+<hr>

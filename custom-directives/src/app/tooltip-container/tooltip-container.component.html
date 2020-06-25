@@ -1,0 +1,8 @@
+<div class="tooltip-container">
+  <div *ngTemplateOutlet="templateRef"></div>
+
+  <img *ngIf="tooltip"
+       [title]="tooltip"
+       (mouseover)="_onMouseOver();"
+       src="assets/img/tooltip.svg">
+</div>
