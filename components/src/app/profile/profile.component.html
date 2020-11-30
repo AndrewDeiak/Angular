@@ -1,0 +1,44 @@
+<div class="app-profile">
+  <div class="app-profile__avatar-wrapper">
+    <div class="app-profile__avatar">
+      <div class="app-profile__avatar-center">
+        <div *ngFor="let flag of FLAGS; let i = index"
+             class="app-profile__avatar-flag"
+             appProfileFlagCoordinates
+             [flagIndex]="i"
+             [startFlagAngle]="startFlagAngle"
+             [angleRotateFlag]="ANGLE_ROTATE_FLAG"
+             (click)="_onFlagClick(flag.id)">
+          <img [src]="'assets/img/profile/flags/' + flag.id + '.svg'">
+        </div>
+      </div>
+
+      <button class="app-profile__avatar-edit-btn">
+        <img src="assets/img/profile/edit-btn.svg" alt="Edit btn">
+      </button>
+    </div>
+  </div>
+
+  <div class="app-profile__content">
+    <h2 class="app-profile__content-name">Cristofer Carder <img src="assets/img/profile/verified.svg" alt="Verified"></h2>
+    <h2 class="app-profile__content-status">Junior</h2>
+
+    <div class="app-profile__content-reviews">
+      <div class="app-profile__content-reviews-stars">
+        <div class="app-profile__content-reviews-rating">
+          <span>&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span>
+        </div>
+      </div>
+
+      <a href="#" class="app-profile__content-reviews-count mat-small">234 Reviews</a>
+    </div>
+
+    <p class="app-profile__content-description">UI\UX Designer, Web Designer, Mobile App Designer, UI\UX Designer, Web
+      Designer,Mobile App Designer</p>
+    <p class="app-profile__content-location mat-small">
+      <img src="assets/img/profile/location.svg" alt="Location">Lviv, Ukraine</p>
+    <button class="app-profile__content-edit-btn">
+      <img src="assets/img/profile/edit-btn-default.svg" alt="Edit btn">
+    </button>
+  </div>
+</div>
