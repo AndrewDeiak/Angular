@@ -1,0 +1,58 @@
+<div class="user-profile">
+  <div class="user-profile__header">
+    <div class="user-profile__header-title">User Profile</div>
+
+    <div class="user-profile__header-actions">
+      <button *ngIf="!_editMode" (click)="_onEdit()" mat-raised-button color="primary">Edit</button>
+      <ng-container *ngIf="_editMode">
+        <button mat-raised-button (click)="_onCancel()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="_onSave()">Save</button>
+      </ng-container>
+    </div>
+  </div>
+
+  <form class="user-profile__form" [formGroup]="_formGroup" *ngIf="_formGroup">
+    <mat-form-field appearance="fill" class="user-profile__form-control">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="user-profile__form-control">
+      <mat-label>Date of birth</mat-label>
+      <input matInput [matDatepicker]="dateOfBirthPicker" formControlName="dateOfBirth">
+      <mat-datepicker-toggle matSuffix [for]="dateOfBirthPicker"></mat-datepicker-toggle>
+      <mat-datepicker #dateOfBirthPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="user-profile__form-control">
+      <mat-label *ngIf="!_isLoadingCountries">Country of birth</mat-label>
+      <mat-label *ngIf="_isLoadingCountries">
+        <div class="user-profile__form-control-loader">
+          <span>Loading...</span>
+          <mat-spinner diameter="20"></mat-spinner>
+        </div>
+      </mat-label>
+
+      <mat-select formControlName="countryOfBirth"
+                  [compareWith]="_compareByName"
+                  (selectionChange)="_onChangeCountryOfBirth($event.value)">
+        <mat-option *ngFor="let country of _countries" [value]="country">{{country.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="user-profile__form-control">
+      <mat-label>Languages</mat-label>
+      <mat-select formControlName="languages" multiple [compareWith]="_compareByName">
+        <mat-option *ngFor="let language of _languages" [value]="language">{{language.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="user-profile__form-control">
+      <label id="gender">Gender</label>
+      <mat-radio-group aria-labelledby="gender"
+                       formControlName="gender">
+        <mat-radio-button *ngFor="let gender of _genders" [value]="gender">{{gender}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </form>
+</div>
