@@ -2,7 +2,7 @@ export interface UserProfile {
   name: string;
   dateOfBirth: string;
   countryOfBirth: CountryOfBirth;
-  languages: Array<object>;
+  languages: Languages[];
   gender: string;
 }
 

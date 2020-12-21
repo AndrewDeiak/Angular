@@ -1,10 +1,10 @@
-import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {CountryOfBirth} from './user-profile.model';
+import {HttpClient} from "@angular/common/http";
+import {Injectable} from "@angular/core";
+import {Observable} from "rxjs";
+import {CountryOfBirth} from "./user-profile.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class CountriesService {
 
@@ -12,6 +12,6 @@ export class CountriesService {
   }
 
   public getCountries(): Observable<CountryOfBirth[]> {
-    return this.http.get<CountryOfBirth[]>('https://restcountries.eu/rest/v2/all');
+    return this.http.get<CountryOfBirth[]>("https://restcountries.eu/rest/v2/all");
   }
 }

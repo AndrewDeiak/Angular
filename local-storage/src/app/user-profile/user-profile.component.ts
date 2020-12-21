@@ -1,13 +1,13 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {finalize} from 'rxjs/operators';
-import {CountriesService} from '../countries.service';
-import {CountryOfBirth, Languages, UserProfile} from '../user-profile.model';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from "@angular/core";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {finalize} from "rxjs/operators";
+import {CountriesService} from "../countries.service";
+import {CountryOfBirth, Languages, UserProfile} from "../user-profile.model";
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.less'],
+  selector: "app-user-profile",
+  templateUrl: "./user-profile.component.html",
+  styleUrls: ["./user-profile.component.less"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserProfileComponent implements OnInit {
@@ -15,8 +15,9 @@ export class UserProfileComponent implements OnInit {
   public _editMode: boolean;
   public _countries: CountryOfBirth[];
   public _languages: Languages[];
-  public _genders: string[] = ['Male', 'Female', 'Other'];
+  public _genders: string[] = ["Male", "Female", "Other"];
   public _isLoadingCountries: boolean;
+  public _maxDateOfBirth = new Date();
 
   constructor(private countriesService: CountriesService,
               private cdr: ChangeDetectorRef,
@@ -52,7 +53,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   public _onSave(): void {
-    localStorage.setItem('user-profile', JSON.stringify(this._formGroup.value));
+    localStorage.setItem("user-profile", JSON.stringify(this._formGroup.value));
     this._editMode = false;
     this._formGroup.disable();
   }
@@ -60,22 +61,19 @@ export class UserProfileComponent implements OnInit {
   public _onCancel(): void {
     this._editMode = false;
     const userProfile: UserProfile = this.getUserProfile();
-    if (userProfile) {
-      const {name, dateOfBirth, countryOfBirth, languages, gender} = userProfile;
-      this._languages = countryOfBirth ? countryOfBirth.languages : null;
-      this._formGroup.patchValue({
-        name,
-        dateOfBirth,
-        countryOfBirth,
-        languages,
-        gender
-      });
-    }
+    this._languages = (userProfile && userProfile.countryOfBirth) ? userProfile.countryOfBirth.languages : null;
+    this._formGroup.patchValue({
+      name: userProfile ? userProfile.name : null,
+      dateOfBirth: userProfile ? userProfile.dateOfBirth : null,
+      countryOfBirth: userProfile ? userProfile.countryOfBirth : null,
+      languages: userProfile ? userProfile.languages : null,
+      gender: userProfile ? userProfile.gender : null
+    });
     this._formGroup.disable();
   }
 
   private getUserProfile(): UserProfile {
-    return JSON.parse(localStorage.getItem('user-profile'));
+    return JSON.parse(localStorage.getItem("user-profile"));
   }
 
   private initForm(): void {
@@ -95,7 +93,7 @@ export class UserProfileComponent implements OnInit {
         name: null,
         dateOfBirth: null,
         countryOfBirth: null,
-        languages: [],
+        languages: null,
         gender: null
       });
     }
