@@ -1,0 +1,9 @@
+<ul class="list-group" *ngIf="cars && cars.length; else empty">
+  <a href="#" *ngFor="let car of cars; trackBy: _trackByFn"
+     (click)="_onSelectCar($event, car)"
+     [class.active]="_selectedCar === car"
+     class="list-group-item list-group-item-action">
+    {{car.name}}
+  </a>
+</ul>
+<ng-template #empty>No cars found</ng-template>

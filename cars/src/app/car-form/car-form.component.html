@@ -1,0 +1,63 @@
+<button type="button" class="btn close" (click)="closeForm.emit()">
+  <span>&times;</span>
+</button>
+
+<form *ngIf="_formGroup" [formGroup]="_formGroup">
+  <div class="form-group">
+    <label for="vehicleId">Vehicle Id</label>
+    <input formControlName="vehicleId" type="text" class="form-control" id="vehicleId" placeholder="Vehicle Id">
+    <small class="text-danger"
+           *ngIf="_formGroup.controls['vehicleId'].invalid && (_formGroup.controls['vehicleId'].touched || _formGroup.controls['vehicleId'].dirty)">
+      <ng-container *ngIf="_formGroup.controls['vehicleId'].errors?.required"></ng-container>
+      Required
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input formControlName="name" type="text" class="form-control" id="name" placeholder="Name">
+    <small class="text-danger"
+           *ngIf="_formGroup.controls['name'].invalid && (_formGroup.controls['name'].touched || _formGroup.controls['name'].dirty)">
+      <ng-container *ngIf="_formGroup.controls['name'].errors?.required"></ng-container>
+      Required
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="model">Model</label>
+    <input formControlName="model" type="text" class="form-control" id="model" placeholder="Model">
+    <small class="text-danger"
+           *ngIf="_formGroup.controls['model'].invalid && (_formGroup.controls['model'].touched || _formGroup.controls['model'].dirty)">
+      <ng-container *ngIf="_formGroup.controls['model'].errors?.required"></ng-container>
+      Required
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="year">Year</label>
+    <input formControlName="year" type="text" class="form-control" id="year" placeholder="Year">
+    <small class="text-danger"
+           *ngIf="_formGroup.controls['year'].invalid && (_formGroup.controls['year'].touched || _formGroup.controls['year'].dirty)">
+      <ng-container *ngIf="_formGroup.controls['year'].errors?.required"></ng-container>
+      Required
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="type">Type</label>
+    <select formControlName="type" class="form-control" id="type">
+      <option *ngFor="let type of _carTypes" [value]="type">{{type}}</option>
+    </select>
+    <small class="text-danger"
+           *ngIf="_formGroup.controls['type'].invalid && (_formGroup.controls['type'].touched || _formGroup.controls['type'].dirty)">
+      <ng-container *ngIf="_formGroup.controls['type'].errors?.required"></ng-container>
+      Required
+    </small>
+  </div>
+
+  <button type="submit"
+          class="btn btn-primary"
+          [disabled]="_formGroup.invalid || _formGroup.pristine"
+          (click)="_onSubmit()">Submit
+  </button>
+</form>

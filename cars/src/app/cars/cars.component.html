@@ -1,0 +1,25 @@
+<div class="app-car">
+  <div class="container">
+    <div class="row app-car__header">
+      <div class="col-md-12">
+        <button (click)="_addCar()" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <app-cars-list [cars]="_cars"
+                       [selectedCar]="_selectedCar"
+                       (selectCar)="_onSelectCar($event)"></app-cars-list>
+      </div>
+      <div class="col-md-6">
+        <app-car-form *ngIf="_formVisibility"
+                      [isEditMode]="_isEditMode"
+                      [car]="_selectedCar"
+                      (submitCar)="_onSubmitCar($event)"
+                      (closeForm)="_onCloseForm()"></app-car-form>
+      </div>
+    </div>
+  </div>
+</div>
+
