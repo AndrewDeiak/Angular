@@ -1,0 +1,47 @@
+<form
+  *ngIf="loginForm"
+  [formGroup]="loginForm"
+  (ngSubmit)="onSubmit()"
+  class="form"
+>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input
+      type="email"
+      matInput
+      formControlName="email"
+      placeholder="Ex. pat@example.com"
+    >
+    <mat-error *ngIf="formControls.email?.errors?.required">
+      Username is required
+    </mat-error>
+
+    <mat-error *ngIf="formControls.email?.errors?.email">
+      Email is not valid
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input
+      type="password"
+      matInput
+      formControlName="password"
+      placeholder="Ex. pat@example.com"
+    >
+    <mat-error *ngIf="formControls.password?.errors?.required">
+      Password is required
+    </mat-error>
+  </mat-form-field>
+
+  <div>
+    <button
+      mat-button
+      [disabled]="isLoading"
+      color="primary"
+    >
+      <span *ngIf="isLoading">Loading</span>
+      Login
+    </button>
+  </div>
+</form>
